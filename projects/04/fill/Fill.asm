@@ -12,3 +12,49 @@
 // the screen should remain fully clear as long as no key is pressed.
 
 // Put your code here.
+@color
+M=0 //Black to start
+
+(INLOOP)
+@KBD
+D=M
+@BLACK
+D;JGT
+
+@color
+M=0
+
+@DRAW
+0;JMP
+
+(BLACK)
+@color
+M=-1
+
+(DRAW)
+@8192
+D=A
+@i
+M=D
+
+(DRAWLOOP)
+@SCREEN
+D=A
+@i
+D=M+D
+@pixel
+M=D
+@color
+D=M
+@pixel
+A=M
+M=D
+
+@i
+MD=M-1
+@DRAWLOOP
+D;JGE
+
+
+@INLOOP
+0;JMP
